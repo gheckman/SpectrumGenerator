@@ -20,6 +20,7 @@ using namespace spectrum_generation;
 int main(int argc, char** argv)
 {
 	modulation_ops mod1;
+	mod1.offset = 128;
 	mod1.frequency = 5000;
 	mod1.sigma = .5;
 	mod1.sidebands = 1;
@@ -27,6 +28,7 @@ int main(int argc, char** argv)
 	mod1.snr = 1e9;
 
 	modulation_ops mod2;
+	mod2.offset = 0;
 	mod2.frequency = 512;
 	mod2.sigma = .5;
 	mod2.sidebands = 0;
@@ -41,8 +43,6 @@ int main(int argc, char** argv)
 
 	default_generator generator;
 	auto spectrum = generator(ops);
-
-	auto sampler = 0;
 
 	std::vector<std::complex<double>> ifft(spectrum.size());
 	std::transform(spectrum.begin(), spectrum.end(), ifft.begin(), [](double x) {return std::complex<double>(x, 0); });

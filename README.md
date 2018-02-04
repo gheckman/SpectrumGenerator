@@ -1,2 +1,2 @@
-# QuickyLinearAlgebra
-Just a quicky linear algebra library. Probably not fast or stable, but enough for what I need.
+# Spectrum Generator
+Can generate spectra with modulated peaks and noise

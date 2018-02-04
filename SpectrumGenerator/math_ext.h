@@ -5,8 +5,8 @@
 //! Mathematical type functions
 namespace math_ext
 {
-	constexpr double pi = 3.141592653589792; //< normal old pi
-	constexpr double inv_sqrt_tau = 0.3989422804014327; //< 1 / sqrt(2 * pi)
+	constexpr double pi = 3.141592653589792; //!< normal old pi
+	constexpr double inv_sqrt_tau = 0.3989422804014327; //!< 1 / sqrt(2 * pi)
 
 	template<typename T, typename Compare>
 	constexpr const T& clamp(const T& v, const T& lo, const T& hi, Compare comp)

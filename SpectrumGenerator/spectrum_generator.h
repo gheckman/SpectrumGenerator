@@ -13,19 +13,20 @@ namespace spectrum_generation
 //! Options for each modulation applied to the spectrum
 struct modulation_ops
 {
-	double frequency = 1.0; //!< Frequency in Hz in frequency domain
-	int sidebands = 0; //<! Amount of sidebands to modulate on
-	double sideband_offset = 0.0; //<! Offset in Hz of the first order sidebands from the main peak
-	double sigma = 0.0; //<! Sigma of the guassian distributed peak
-	double snr = 1.0; //<! Signal to noise ratio
+	double offset = 0; //!< Offset of initial peak from beginning
+	double frequency = 1.0; //!< Frequency of peaks in Hz
+	int sidebands = 0; //!< Amount of sidebands to modulate on
+	double sideband_offset = 0.0; //!< Offset in Hz of the first order sidebands from the main peak
+	double sigma = 0.0; //!< Sigma of the guassian distributed peak
+	double snr = 1.0; //!< Signal to noise ratio
 };
 
 //! Options for spectrum generation
 struct spectrum_ops
 {
-	std::vector<modulation_ops> modulation; //<! Vector of Modulation operations applied to the spectrum
-	int points = 1; //<! Amount of points in the final spectrum
-	double rbw = 1.0; //<! Resolution bandwidth (currently unused)
+	std::vector<modulation_ops> modulation; //!< Vector of Modulation operations applied to the spectrum
+	int points = 1; //!< Amount of points in the final spectrum
+	double rbw = 1.0; //!< Resolution bandwidth (currently unused)
 };
 
 //! Generates the spectrum using the supplied options
@@ -45,7 +46,7 @@ public:
 		std::vector<double> spectrum(ops.points);
 		for (const auto& mod : ops.modulation)
 		{
-			auto offset = 128; // mod.frequency * -uniform_(engine_);
+			auto offset = mod.offset;
 			while (offset < spectrum.size() + mod.frequency)
 			{
 				for (int i = 0; i <= mod.sidebands; ++i)
